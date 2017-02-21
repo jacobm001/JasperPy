@@ -37,15 +37,19 @@ class JasperPy(object):
 		print(r.url)
 		print(r.status_code)
 
-	def search_vds(self):
+	def search(self, folderURI="", q=""):
 		url = self.r_v2_url + "resources"
 
 		payload = {
 			"recursive"   : "true"
-			# , "type"      : ""
 			, "sortBy"    : "accessTime"
-			, "folderURI" : "caches/vds"
 		}
+
+		if q != "":
+			payload['q'] = q
+
+		if folderURI != "":
+			payload['folderURI'] = folderURI
 
 		r = self.session.get(url, headers=self.headers, data=payload)
 
