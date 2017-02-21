@@ -1,0 +1,3 @@
+class JasperError(Exception):
+	pass
+
