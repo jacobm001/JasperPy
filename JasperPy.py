@@ -34,8 +34,10 @@ class JasperPy(object):
 
 		r = self.session.get(url, headers=self.headers)
 
-		print(r.url)
-		print(r.status_code)
+		if r.status_code == 200:
+			return True
+		else:
+			return False
 
 	def search(self, folderURI="", q=""):
 		url = self.r_v2_url + "resources"
@@ -50,6 +52,8 @@ class JasperPy(object):
 
 		if folderURI != "":
 			payload['folderURI'] = folderURI
+
+
 
 		r = self.session.get(url, headers=self.headers, data=payload)
 
